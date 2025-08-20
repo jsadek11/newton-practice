@@ -8,7 +8,8 @@ def second_derivative(x, f, eps = 0.001):
 
 
 def newtons_method(x0, f_0, eps = 0.001):
-
+    '''Run Newton's method to minimize a function.
+    '''
     f_1 = first_derivative(x0, f_0, eps)
     f_2 = second_derivative(x0, f_0, eps)
 
