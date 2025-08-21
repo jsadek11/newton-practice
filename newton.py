@@ -7,20 +7,26 @@ def second_derivative(x, f, eps = 0.001):
     return (first_derivative(x + eps, f) - first_derivative(x, f)) / eps
 
 
-def newtons_method(x0, f_0, eps = 0.001):
+def newtons_method(x0, f_0, eps = 0.001, max_iters = 1000):
     '''Run Newton's method to minimize a function.
     '''
+    iter_count = 0
     f_1 = first_derivative(x0, f_0, eps)
     f_2 = second_derivative(x0, f_0, eps)
 
     xt_1 = x0
     xt = x0 - f_1 / f_2
     
-    while abs(xt - xt_1) > eps:
+    while abs(xt - xt_1) > eps and iter_count < max_iters:
         f_1 = first_derivative(xt, f_0)
         f_2 = second_derivative(xt, f_0)
         xt_1 = xt
         xt = xt_1 - f_1 / f_2
+        iter_count ++
+
+        if iter_count >= max_iters:
+            print("max iters reached!")
+            break
 
     return xt
 
